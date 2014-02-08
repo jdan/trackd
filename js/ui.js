@@ -7,5 +7,5 @@ newCard.onclick = function (e) {
 
   this.parentNode.insertBefore(el, this);
 
-  React.renderComponent(Card(null), el);
+  React.renderComponent(CardView(null), el);
 };
