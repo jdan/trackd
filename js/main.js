@@ -1,9 +1,4 @@
-/** @jsx React.DOM */
-
-var Hello = React.createClass({
-  render: function() {
-    return <div>Hello {this.props.name}</div>;
-  }
+document.addEventListener("DOMContentLoaded", function () {
+  console.log(Card)
+  React.renderComponent(Card(null), document.getElementById("dashboard"));
 });
-
-React.renderComponent(<Hello name="Jordan" />, document.getElementById("dashboard"));
