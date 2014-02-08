@@ -9,3 +9,22 @@ body {
   color: #fff;
   background-color: #222;
 }
+
+.button {
+  display: inline-block;
+  padding: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+
+  border: 2px solid black;
+  border-radius: 5px;
+
+  -webkit-transition: all 0.1s ease-in-out;
+}
+
+.button:hover {
+  cursor: pointer;
+  background-color: #222;
+  color: #fff;
+}

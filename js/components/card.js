@@ -27,6 +27,17 @@ var CardView = React.createClass({
     };
   },
 
+  handleSwitch: function () {
+    if (this.card.running) {
+      this.card.punchOut();
+    } else {
+      this.card.punchIn();
+    }
+
+    /* Change the state */
+    this.tick();
+  },
+
   tick: function () {
     this.setState({
       totalTime: this.card.total(),
@@ -52,6 +63,12 @@ var CardView = React.createClass({
 
         <div className="card-heading">session</div>
         <div className="card-field">{formatTime(this.state.sessionTime)}</div>
+
+        <div className="card-actions">
+          <div onClick={this.handleSwitch} className="button">
+            {this.card.running ? "Stop" : "Start"}
+          </div>
+        </div>
       </div>
     );
   }
