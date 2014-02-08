@@ -2,6 +2,7 @@
   width: 280px;
   height: 400px;
   padding: 20px;
+  float: left;
 
   -webkit-transition: all 0.2s ease-in-out;
 }

@@ -21,7 +21,10 @@ var Card = React.createClass({
   },
   render: function() {
     return (
-      <div>Id: {this.state.id}<br/>Seconds Elapsed: {this.state.secondsElapsed}</div>
+      <div>
+        <div className="card-title">{this.state.id}</div>
+        <div className="card-time">{this.state.secondsElapsed}</div>
+      </div>
     );
   }
 });
