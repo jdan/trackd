@@ -2,10 +2,17 @@
 <html>
 <head>
   <title>trackd</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/card.css">
 </head>
 <body>
   <div id="menu"></div>
-  <div id="dashboard"></div>
+  <div id="dashboard">
+    <div id="new-card" class="card invert">
+      <div class="card-title">New card</div>
+      <div class="card-plus">+</div>
+    </div>
+  </div>
 
   <script src="/js/vendor/JSXTransformer.js"></script>
   <script src="/js/vendor/react.js"></script>
@@ -13,6 +20,7 @@
   <script src="/js/clock.js"></script>
   <script type="text/jsx" src="/js/components/card.js"></script>
 
+  <script src="/js/ui.js"></script>
   <script src="/js/main.js"></script>
 </body>
 </html>

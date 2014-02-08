@@ -14,10 +14,10 @@ var Card = React.createClass({
     this.setState({secondsElapsed: this.state.secondsElapsed + 1});
   },
   componentDidMount: function() {
-    clock.addCallback(this.id, this.tick.bind(this));
+    clock.addCallback(this.state.id, this.tick);
   },
   componentWillUnmount: function() {
-    clock.clearCallback(this.id);
+    clock.clearCallback(this.state.id);
   },
   render: function() {
     return (

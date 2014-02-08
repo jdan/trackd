@@ -1,0 +1,25 @@
+.card {
+  width: 280px;
+  height: 400px;
+  padding: 20px;
+
+  -webkit-transition: all 0.2s ease-in-out;
+}
+
+.card:hover {
+  cursor: pointer;
+  opacity: 0.9;
+}
+
+.card-title {
+  text-align: center;
+  font-size: 30px;
+  font-weight: 200;
+}
+
+.card-plus {
+  text-align: center;
+  margin-top: 30px;
+  font-weight: bold;
+  font-size: 160px;
+}
