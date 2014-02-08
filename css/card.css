@@ -1,7 +1,6 @@
 .card {
-  width: 280px;
-  height: 350px;
-  padding: 20px;
+  width: 20%;
+  height: 400px;
   float: left;
 
   -webkit-transition: all 0.2s ease-in-out;
@@ -13,18 +12,21 @@
 }
 
 .card-title {
+  margin-top: 20px;
   text-align: center;
   font-size: 40px;
   font-weight: 200;
 }
 
 .card-heading {
+  margin-left: 20px;
   margin-top: 30px;
   font-size: 30px;
   font-weight: 200;
 }
 
 .card-field {
+  margin-left: 20px;
   font-weight: bold;
   font-size: 40px;
 }
@@ -35,3 +37,28 @@
   font-weight: bold;
   font-size: 160px;
 }
+
+@media (max-width: 1400px) {
+  .card {
+    width: 25%;
+  }
+}
+
+@media (max-width: 1150px) {
+  .card {
+    width: 33%;
+  }
+}
+
+@media (max-width: 820px) {
+  .card {
+    width: 50%;
+  }
+}
+
+@media (max-width: 500px) {
+  .card {
+    width: 100%;
+  }
+}
+
