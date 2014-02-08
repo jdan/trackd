@@ -1,6 +1,6 @@
 .card {
   width: 280px;
-  height: 400px;
+  height: 350px;
   padding: 20px;
   float: left;
 
@@ -14,8 +14,19 @@
 
 .card-title {
   text-align: center;
+  font-size: 40px;
+  font-weight: 200;
+}
+
+.card-heading {
+  margin-top: 30px;
   font-size: 30px;
   font-weight: 200;
+}
+
+.card-field {
+  font-weight: bold;
+  font-size: 40px;
 }
 
 .card-plus {

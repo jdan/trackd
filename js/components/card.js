@@ -10,20 +10,25 @@ var Card = React.createClass({
       secondsElapsed: 0
     };
   },
+
   tick: function() {
     this.setState({secondsElapsed: this.state.secondsElapsed + 1});
   },
+
   componentDidMount: function() {
     clock.addCallback(this.state.id, this.tick);
   },
+
   componentWillUnmount: function() {
     clock.clearCallback(this.state.id);
   },
+
   render: function() {
     return (
       <div>
         <div className="card-title">{this.state.id}</div>
-        <div className="card-time">{this.state.secondsElapsed}</div>
+        <div className="card-heading">total</div>
+        <div className="card-field">{formatTime(this.state.secondsElapsed)}</div>
       </div>
     );
   }
