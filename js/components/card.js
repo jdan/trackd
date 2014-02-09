@@ -95,7 +95,7 @@ var CardView = React.createClass({
     if (this.state.editingName) {
       nameControl = (
         <div className="card-title">
-          <form onSubmit={this.handleNameSubmit}>
+          <form onSubmit={this.handleNameSubmit} onBlur={this.handleNameSubmit}>
             <input autoFocus className="title-input" ref="nameInput" defaultValue={this.card.name} />
           </form>
         </div>
