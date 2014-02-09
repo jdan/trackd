@@ -5,6 +5,53 @@ body {
   color: #222;
 }
 
+#menu {
+  padding: 20px;
+  border-bottom: 1px solid #222;
+  position: relative;
+}
+
+#sidebar {
+  width: 250px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+#avatar {
+  background-image: url('https://en.gravatar.com/userimage/25565547/05dd59d9580e0449c73934f83446c027.jpg?size=80');
+  background-size: cover;
+  display: inline-block;
+  width: 60px;
+  height: 60px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+
+  -webkit-transition: all 0.2s ease-in-out;
+}
+
+#avatar:hover {
+  opacity: 0.8;
+}
+
+#twitter-share {
+  display: inline-block;
+  position: relative;
+  top: -15px;
+  left: 20px;
+}
+
+.brand {
+  font-weight: 200;
+  margin: 0; padding: 0;
+}
+
+.phrase {
+  font-weight: 300;
+  margin: 0; padding: 0;
+}
+
 .invert {
   color: #fff;
   background-color: #222;
@@ -30,4 +77,10 @@ body {
   cursor: pointer;
   background-color: #222;
   color: #fff;
+}
+
+@media (max-width: 550px) {
+  #menu {
+    display: none;
+  }
 }

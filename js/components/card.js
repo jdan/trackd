@@ -135,7 +135,7 @@ var CardView = React.createClass({displayName: 'CardView',
 
       logControl = (
         React.DOM.div( {className:"modal"},
-          React.DOM.a( {href:"#", onClick:this.handleLogDismiss, className:"modal-dismiss"}, "×"),
+          React.DOM.a( {href:"#", onClick:this.handleLogDismiss, className:"modal-dismiss"}, "x"),
           React.DOM.div( {className:"modal-body"},
             React.DOM.div( {className:"card-title"}, this.card.name),
             logItems
