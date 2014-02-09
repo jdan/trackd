@@ -88,7 +88,7 @@ var CardView = React.createClass({
     }
 
     return (
-      <div>
+      <div className={"bg bg-" + this.card.color}>
         {nameControl}
 
         <div className="card-heading">total</div>

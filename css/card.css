@@ -47,8 +47,22 @@
 .card-actions {
   margin-left: 20px;
   position: absolute;
-  bottom: 10px;
+  bottom: 20px;
 }
+
+.bg {
+  position: absolute;
+  top: 0; bottom: 0;
+  left: 0; right: 0;
+}
+
+.bg-blue    { background-color: #049cdb }
+.bg-green   { background-color: #46a546 }
+.bg-red     { background-color: #9d261d }
+.bg-yellow  { background-color: #ffc40d }
+.bg-orange  { background-color: #f89406 }
+.bg-pink    { background-color: #de6fa1 }
+.bg-purple  { background-color: #7a43b6 }
 
 @media (max-width: 1400px) {
   .card {

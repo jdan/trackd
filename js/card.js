@@ -1,13 +1,16 @@
+var COLOR_CLASSES = ['red', 'blue', 'green', 'yellow', 'purple', 'pink', 'orange'];
+
 /**
  * Card class
  *
  * Cards consist of a log of start and end times
  */
 
-function Card(name) {
+function Card(name, color) {
   this.name = name;
-  this.id = Card.cardId++;    // I don't think we need this
+  this.color = color || COLOR_CLASSES[Math.floor(Math.random() * COLOR_CLASSES.length)];
 
+  this.id = Card.cardId++;    // I don't think we need this
   this.running = false;
   this.startTime = null;
 
