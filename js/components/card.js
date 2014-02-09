@@ -23,7 +23,8 @@ var CardView = React.createClass({
 
     return {
       totalTime: 0,
-      sessionTime: 0
+      sessionTime: 0,
+      editingName: false
     };
   },
 
@@ -36,6 +37,17 @@ var CardView = React.createClass({
 
     /* Change the state */
     this.tick();
+  },
+
+  handleNameClick: function () {
+    this.setState({ editingName: true });
+  },
+
+  handleNameSubmit: function (e) {
+    e.preventDefault();
+
+    this.card.name = this.refs.nameInput.getDOMNode().value;
+    this.setState({ editingName: false });
   },
 
   tick: function () {
@@ -54,9 +66,30 @@ var CardView = React.createClass({
   },
 
   render: function () {
+    var nameControl;
+
+    /**
+     * Controls for editing the card title
+     */
+    if (this.state.editingName) {
+      nameControl = (
+        <div className="card-title">
+          <form onSubmit={this.handleNameSubmit}>
+            <input autofocus className="title-input" ref="nameInput" defaultValue={this.card.name} />
+          </form>
+        </div>
+      );
+    } else {
+      nameControl = (
+        <div className="card-title" onClick={this.handleNameClick}>
+          {this.card.name}
+        </div>
+      );
+    }
+
     return (
       <div>
-        <div className="card-title">{this.card.name}</div>
+        {nameControl}
 
         <div className="card-heading">total</div>
         <div className="card-field">{formatTime(this.state.totalTime)}</div>

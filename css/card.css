@@ -19,6 +19,11 @@
   font-weight: 200;
 }
 
+.title-input {
+  font-size: 26px;
+  width: 75%;
+}
+
 .card-heading {
   margin-left: 20px;
   margin-top: 30px;
