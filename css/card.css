@@ -100,5 +100,14 @@
   .card {
     width: 100%;
   }
-}
 
+  #new-card {
+    height: 200px;
+  }
+
+  .card-plus {
+    margin-top: 10px;
+    font-size: 100px;
+    line-height: 60px;
+  }
+}

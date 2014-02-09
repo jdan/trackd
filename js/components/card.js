@@ -100,7 +100,7 @@ var CardView = React.createClass({
         <div className="card-field">{formatTime(this.state.sessionTime)}</div>
 
         <div className="card-actions">
-          <div onClick={this.handleSwitch} className="button">
+          <div onClick={this.handleSwitch} onTouchEnd={this.handleSwitch} className="button">
             {this.card.running ? "Stop" : "Start"}
           </div>
         </div>
