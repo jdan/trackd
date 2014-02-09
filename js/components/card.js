@@ -15,7 +15,7 @@ var CardView = React.createClass({
     this.card = this.props.card;
 
     /* Punch in if the card has no log */
-    if (!this.card.log.length) {
+    if (!this.card.running && !this.card.log.length) {
       this.card.punchIn();
     }
 

@@ -23,6 +23,7 @@ function pad(str, n, padChar) {
  */
 function formatTime(timeInSeconds) {
   var formattedTime = '';
+  timeInSeconds = Math.max(timeInSeconds, 0);   // prevent negative time
 
   var seconds = timeInSeconds % 60;
   var minutes = Math.floor(timeInSeconds / 60) % 60;
