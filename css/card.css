@@ -17,6 +17,13 @@
   text-align: center;
   font-size: 40px;
   font-weight: 200;
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .title-input {
@@ -42,6 +49,13 @@
   margin-top: 30px;
   font-weight: bold;
   font-size: 160px;
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .card-actions {
@@ -56,13 +70,13 @@
   left: 0; right: 0;
 }
 
-.bg-blue    { background-color: #049cdb }
-.bg-green   { background-color: #46a546 }
-.bg-red     { background-color: #9d261d }
+.bg-blue    { background-color: lightblue; }
+.bg-green   { background-color: lightgreen; }
+.bg-red     { background-color: indianred; }
 .bg-yellow  { background-color: #ffc40d }
-.bg-orange  { background-color: #f89406 }
-.bg-pink    { background-color: #de6fa1 }
-.bg-purple  { background-color: #7a43b6 }
+.bg-orange  { background-color: orange; }
+.bg-pink    { background-color: pink; }
+.bg-purple  { background-color: mediumpurple; }
 
 @media (max-width: 1400px) {
   .card {
