@@ -6,20 +6,23 @@ var COLOR_CLASSES = ['red', 'blue', 'green', 'yellow', 'purple', 'pink', 'orange
  * Cards consist of a log of start and end times
  */
 
-function Card(name, color) {
-  this.id = Card.cardId++;    // I don't think we need this
+function Card(options) {
+  options = options || {};
 
-  this.name = name || 'Card ' + this.id;
-  this.color = color || COLOR_CLASSES[Math.floor(Math.random() * COLOR_CLASSES.length)];
+  Card.cardId++;
+  this.id = options.id || Card.cardId;    // I don't think we need this
 
-  this.running = false;
-  this.startTime = null;
+  this.name = options.name || 'Card ' + this.id;
+  this.color = options.color || COLOR_CLASSES[Math.floor(Math.random() * COLOR_CLASSES.length)];
+
+  this.running = options.running || false;
+  this.startTime = options.startTime || null;
 
   /**
    * Log of all times on the card
    * Each item is a 2-item array with a start and end time
    */
-  this.log = [];
+  this.log = options.log || [];
 }
 
 
@@ -36,6 +39,8 @@ Card.cardId = 1;
 Card.prototype.punchIn = function () {
   this.startTime = Math.floor(new Date().getTime() / 1000);
   this.running = true;
+
+  this.save();
 };
 
 
@@ -47,6 +52,8 @@ Card.prototype.punchOut = function () {
   var endTime = Math.floor(new Date().getTime() / 1000);
   this.log.push([this.startTime, endTime]);
   this.running = false;
+
+  this.save();
 
   return endTime - this.startTime;
 };
@@ -86,4 +93,12 @@ Card.prototype.session = function () {
     var now = Math.floor(new Date().getTime() / 1000);
     return now - this.startTime;
   }
+};
+
+
+/**
+ * Saves the card
+ */
+Card.prototype.save = function () {
+  boardRef.child('cards').child(this.id).set(this);
 };

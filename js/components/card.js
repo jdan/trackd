@@ -14,8 +14,10 @@ var CardView = React.createClass({
   getInitialState: function () {
     this.card = this.props.card;
 
-    /* Punch in right away - for now */
-    this.card.punchIn();
+    /* Punch in if the card has no log */
+    if (!this.card.log.length) {
+      this.card.punchIn();
+    }
 
     return {
       totalTime: 0,
