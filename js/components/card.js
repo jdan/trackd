@@ -27,7 +27,9 @@ var CardView = React.createClass({
     };
   },
 
-  handleSwitch: function () {
+  handleSwitch: function (e) {
+    e.preventDefault();
+
     if (this.card.running) {
       this.card.punchOut();
     } else {
