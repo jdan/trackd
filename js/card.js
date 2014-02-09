@@ -16,8 +16,8 @@ function Card(options) {
 
   this.running = false;
   this.startTime = null;
+  this.log = [];
 
-  //this.loadOptions(options);
   boardRef.child('cards').child(this.id).on('value', function (snapshot) {
     var val = snapshot.val();
 
@@ -25,11 +25,12 @@ function Card(options) {
     this.loadOptions(val);
   }.bind(this));
 
-  /**
-   * Log of all times on the card
-   * Each item is a 2-item array with a start and end time
-   */
-  this.log = options.log || [];
+  boardRef.child('cards').child(this.id).on('value', function (snapshot) {
+    var val = snapshot.val();
+
+    if (val === undefined) return;
+    this.loadOptions(val);
+  }.bind(this));
 }
 
 
@@ -127,6 +128,14 @@ Card.prototype.session = function () {
  */
 Card.prototype.save = function () {
   boardRef.child('cards').child(this.id).set(this);
+};
+
+
+/**
+ * Destroys the card
+ */
+Card.prototype.destroy = function () {
+  boardRef.child('cards').child(this.id).remove();
 };
 
 

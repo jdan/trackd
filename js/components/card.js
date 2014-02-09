@@ -63,6 +63,14 @@ var CardView = React.createClass({
     this.setState({ showLog: false });
   },
 
+  handleDeleteClick: function (e) {
+    e.preventDefault();
+
+    if (confirm('Are you sure you want to delete - ' + this.card.name + '?')) {
+      this.card.destroy();
+    }
+  },
+
   tick: function () {
     this.setState({
       totalTime: this.card.total(),
@@ -113,6 +121,9 @@ var CardView = React.createClass({
         logItems.push(<h4 className="card-subheading">{log[i].date}</h4>);
         ul = [];
 
+        /* in case punches isn't defined */
+        log[i].punches = log[i].punches || [];
+
         for (j = 0; j < log[i].punches.length; j++) {
           ul.push(
             <li className="card-li">
@@ -156,6 +167,10 @@ var CardView = React.createClass({
 
           <a href="#" onClick={this.handleLogDisplay} className="button">
             Log
+          </a>
+
+          <a href="#" onClick={this.handleDeleteClick} className="button button-delete">
+            Delete
           </a>
         </div>
 

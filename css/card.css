@@ -65,6 +65,7 @@
 .card-actions {
   margin-left: 20px;
   position: absolute;
+  left: 0; right: 0;
   bottom: 20px;
 }
 
@@ -98,6 +99,11 @@
   position: absolute;
   top: 10px;
   right: 10px;
+}
+
+.button-delete {
+  float: right;
+  margin-right: 20px;
 }
 
 .bg {
