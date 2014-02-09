@@ -38,6 +38,10 @@
   font-weight: 200;
 }
 
+.card-subheading {
+  margin-bottom: 5px;
+}
+
 .card-field {
   margin-left: 20px;
   font-weight: bold;
@@ -62,6 +66,38 @@
   margin-left: 20px;
   position: absolute;
   bottom: 20px;
+}
+
+.card-ul {
+  margin: 0 0 10px;
+  padding: 0;
+  list-style-type: none;
+}
+
+.modal {
+  position: absolute;
+  top: 0; bottom: 0;
+  left: 0; right: 0;
+
+  margin: 5%;
+  padding: 10px;
+  background-color: #fff;
+}
+
+.modal-body {
+  padding: 0 5px;
+  overflow-y: scroll;
+  height: 330px;
+}
+
+.modal-dismiss {
+  text-decoration: none;
+  color: #999;
+  font-size: 30px;
+  font-weight: bold;
+  position: absolute;
+  top: 10px;
+  right: 10px;
 }
 
 .bg {

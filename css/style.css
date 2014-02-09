@@ -13,9 +13,12 @@ body {
 .button {
   display: inline-block;
   padding: 10px;
+  margin-right: 10px;
   font-size: 20px;
   font-weight: bold;
   text-transform: uppercase;
+  text-decoration: none;
+  color: inherit;
 
   border: 2px solid black;
   border-radius: 5px;

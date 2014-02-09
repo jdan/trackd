@@ -128,3 +128,64 @@ Card.prototype.session = function () {
 Card.prototype.save = function () {
   boardRef.child('cards').child(this.id).set(this);
 };
+
+
+/**
+ * Produces a pretty log for a card
+ */
+Card.prototype.prettyLog = function () {
+  var log = [];
+  var currentEntry = {};
+  var lastDate = null;
+
+  for (var i = 0; i < this.log.length; i++) {
+    var start = this.log[i][0];
+    var end = this.log[i][1];
+
+    /**
+     * It's a new day
+     * Make a new entry and push the old one
+     */
+    if (formatDate(start) !== lastDate) {
+      if (currentEntry.length > 0) log.push(currentEntry);
+      lastDate = formatDate(start);
+
+      currentEntry = {
+        date: formatDate(start),
+        punches: [[formatTimeOfDay(start)]]
+      };
+    } else {
+      /* Otherwise, punch in the first time as usual */
+      currentEntry.punches.push([formatTimeOfDay(start)]);
+    }
+
+    var lastPunch = currentEntry.punches[currentEntry.punches.length - 1];
+
+    /**
+     * If our punchOut is on the next day
+     * Separate this into two punches
+     * Start -> Midnight, Midnight -> End
+     *
+     * There's a bug here if a punch lasts more than 24 hours
+     */
+    if (formatDate(end) !== currentEntry.date) {
+      lastPunch.push('23:59:00');
+      log.push(currentEntry);
+
+      currentEntry = {
+        date: formatDate(end),
+        punches: [['00:00:00', formatTimeOfDay(end)]]
+      };
+    } else {
+      /* Otherwise, just push the punchOut time */
+      lastPunch.push(formatTimeOfDay(end));
+    }
+
+    lastPunch.push(formatTime(end - start));
+  }
+
+  /* Flush it out one last time */
+  log.push(currentEntry);
+
+  return log;
+};

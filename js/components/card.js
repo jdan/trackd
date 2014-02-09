@@ -22,7 +22,8 @@ var CardView = React.createClass({
     return {
       totalTime: 0,
       sessionTime: 0,
-      editingName: false
+      editingName: false,
+      showLog: false
     };
   },
 
@@ -37,7 +38,8 @@ var CardView = React.createClass({
     this.tick();
   },
 
-  handleNameClick: function () {
+  handleNameClick: function (e) {
+    e.preventDefault();
     this.setState({ editingName: true });
   },
 
@@ -47,6 +49,16 @@ var CardView = React.createClass({
     this.card.name = this.refs.nameInput.getDOMNode().value;
     this.card.save();
     this.setState({ editingName: false });
+  },
+
+  handleLogDisplay: function (e) {
+    e.preventDefault();
+    this.setState({ showLog: true });
+  },
+
+  handleLogDismiss: function (e) {
+    e.preventDefault();
+    this.setState({ showLog: false });
   },
 
   tick: function () {
@@ -65,7 +77,7 @@ var CardView = React.createClass({
   },
 
   render: function () {
-    var nameControl;
+    var nameControl, logControl;
 
     /**
      * Controls for editing the card title
@@ -86,6 +98,43 @@ var CardView = React.createClass({
       );
     }
 
+    /**
+     * Log display
+     */
+    if (this.state.showLog) {
+      var logItems = [];
+      var log = this.card.prettyLog();
+      var i, j, ul;
+
+      for (i = 0; i < log.length; i++) {
+        /* Each item is a day */
+        logItems.push(<h4 className="card-subheading">{log[i].date}</h4>);
+        ul = [];
+
+        for (j = 0; j < log[i].punches.length; j++) {
+          ul.push(
+            <li className="card-li">
+              {log[i].punches[j][0]} - {log[i].punches[j][1]} ({log[i].punches[j][2]})
+            </li>
+          );
+        }
+
+        logItems.push(<ul className="card-ul">{ul}</ul>);
+      }
+
+      logControl = (
+        <div className="modal">
+          <a href="#" onClick={this.handleLogDismiss} className="modal-dismiss">×</a>
+          <div className="modal-body">
+            <div className="card-title">{this.card.name}</div>
+            {logItems}
+          </div>
+        </div>
+      );
+    } else {
+      logControl = "";
+    }
+
     return (
       <div className={"bg bg-" + this.card.color}>
         {nameControl}
@@ -99,10 +148,16 @@ var CardView = React.createClass({
         <div className="card-field">{formatTime(this.state.sessionTime)}</div>
 
         <div className="card-actions">
-          <div onClick={this.handleSwitch} onTouchEnd={this.handleSwitch} className="button">
+          <a href="#" onClick={this.handleSwitch} className="button">
             {this.card.running ? "Stop" : "Start"}
-          </div>
+          </a>
+
+          <a href="#" onClick={this.handleLogDisplay} className="button">
+            Log
+          </a>
         </div>
+
+        {logControl}
       </div>
     );
   }

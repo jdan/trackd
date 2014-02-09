@@ -39,3 +39,31 @@ function formatTime(timeInSeconds) {
 
   return formattedTime;
 }
+
+/**
+ * Formats a given time of day in 24hr format
+ * Output: 08:24:00
+ */
+function formatTimeOfDay(time) {
+  var date = new Date(time * 1000);
+
+  return [
+    pad(date.getHours(), 2),
+    pad(date.getMinutes(), 2),
+    pad(date.getSeconds(), 2)
+  ].join(':');
+}
+
+/**
+ * Formats a givenm date
+ * In the form of YYYY-MM-DD
+ */
+function formatDate(time) {
+  var date = new Date(time * 1000);
+
+  return [
+    date.getFullYear(),
+    pad(date.getMonth() + 1, 2),
+    pad(date.getDate(), 2)
+  ].join('-');
+}
