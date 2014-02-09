@@ -30,9 +30,8 @@ function formatTime(timeInSeconds) {
 
   if (hours > 0) {
     formattedTime += pad(hours, 2) + 'hr';
-  }
-
-  if (minutes > 0) {
+    formattedTime += pad(minutes, 2) + 'm';
+  } else if (minutes > 0) {
     formattedTime += pad(minutes, 2) + 'm';
   }
 
