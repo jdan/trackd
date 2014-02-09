@@ -91,6 +91,10 @@
   height: 330px;
 }
 
+.modal .card-title {
+  font-size: 30px;
+}
+
 .modal-dismiss {
   text-decoration: none;
   color: #999;
@@ -104,6 +108,10 @@
 .button-delete {
   float: right;
   margin-right: 20px;
+}
+
+.button-delete:hover {
+  color: indianred;
 }
 
 .bg {
