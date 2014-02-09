@@ -11,12 +11,19 @@ function Card(options) {
 
   Card.cardId++;
   this.id = options.id || Card.cardId;    // I don't think we need this
+  this.name = 'Card ' + this.id;
+  this.color = COLOR_CLASSES[Math.floor(Math.random() * COLOR_CLASSES.length)];
 
-  this.name = options.name || 'Card ' + this.id;
-  this.color = options.color || COLOR_CLASSES[Math.floor(Math.random() * COLOR_CLASSES.length)];
+  this.running = false;
+  this.startTime = null;
 
-  this.running = options.running || false;
-  this.startTime = options.startTime || null;
+  //this.loadOptions(options);
+  boardRef.child('cards').child(this.id).on('value', function (snapshot) {
+    var val = snapshot.val();
+
+    if (val === undefined) return;
+    this.loadOptions(val);
+  }.bind(this));
 
   /**
    * Log of all times on the card
@@ -30,6 +37,25 @@ function Card(options) {
  * Auto-incrementing id
  */
 Card.cardId = 1;
+
+
+/**
+ * Loads options
+ * This is invoked when a Card object is initialized, or when the firebase
+ * route has a new value
+ */
+Card.prototype.loadOptions = function (options) {
+  options = options || {};
+
+  /* The properties we want to overwrite from `options` */
+  var properties = ['name', 'color', 'running', 'startTime', 'log'];
+
+  for (var i = 0; i < properties.length; i++) {
+    if (options[properties[i]] !== undefined) {
+      this[properties[i]] = options[properties[i]];
+    }
+  }
+};
 
 
 /**

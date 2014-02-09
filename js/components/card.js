@@ -45,6 +45,7 @@ var CardView = React.createClass({
     e.preventDefault();
 
     this.card.name = this.refs.nameInput.getDOMNode().value;
+    this.card.save();
     this.setState({ editingName: false });
   },
 
