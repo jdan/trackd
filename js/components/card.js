@@ -1,12 +1,10 @@
-/** @jsx React.DOM */
-
 /**
  * A CardView holds
  * - an instance of the Card class
  * - the total time elapsed
  * - the current session's time elapsed
  */
-var CardView = React.createClass({
+var CardView = React.createClass({displayName: 'CardView',
 
   /**
    * The state of this view includes an id and a Card instance
@@ -94,17 +92,17 @@ var CardView = React.createClass({
      */
     if (this.state.editingName) {
       nameControl = (
-        <div className="card-title">
-          <form onSubmit={this.handleNameSubmit} onBlur={this.handleNameSubmit}>
-            <input autoFocus className="title-input" ref="nameInput" defaultValue={this.card.name} />
-          </form>
-        </div>
+        React.DOM.div( {className:"card-title"},
+          React.DOM.form( {onSubmit:this.handleNameSubmit, onBlur:this.handleNameSubmit},
+            React.DOM.input( {autoFocus:true, className:"title-input", ref:"nameInput", defaultValue:this.card.name} )
+          )
+        )
       );
     } else {
       nameControl = (
-        <div className="card-title" onClick={this.handleNameClick}>
-          {this.card.name}
-        </div>
+        React.DOM.div( {className:"card-title", onClick:this.handleNameClick},
+          this.card.name
+        )
       );
     }
 
@@ -118,7 +116,7 @@ var CardView = React.createClass({
 
       for (i = 0; i < log.length; i++) {
         /* Each item is a day */
-        logItems.push(<h4 className="card-subheading">{log[i].date}</h4>);
+        logItems.push(React.DOM.h4( {className:"card-subheading"}, log[i].date));
         ul = [];
 
         /* in case punches isn't defined */
@@ -126,56 +124,56 @@ var CardView = React.createClass({
 
         for (j = 0; j < log[i].punches.length; j++) {
           ul.push(
-            <li className="card-li">
-              {log[i].punches[j][0]} - {log[i].punches[j][1]} ({log[i].punches[j][2]})
-            </li>
+            React.DOM.li( {className:"card-li"},
+              log[i].punches[j][0], " - ", log[i].punches[j][1], " (",log[i].punches[j][2],") "
+            )
           );
         }
 
-        logItems.push(<ul className="card-ul">{ul}</ul>);
+        logItems.push(React.DOM.ul( {className:"card-ul"}, ul));
       }
 
       logControl = (
-        <div className="modal">
-          <a href="#" onClick={this.handleLogDismiss} className="modal-dismiss">×</a>
-          <div className="modal-body">
-            <div className="card-title">{this.card.name}</div>
-            {logItems}
-          </div>
-        </div>
+        React.DOM.div( {className:"modal"},
+          React.DOM.a( {href:"#", onClick:this.handleLogDismiss, className:"modal-dismiss"}, "×"),
+          React.DOM.div( {className:"modal-body"},
+            React.DOM.div( {className:"card-title"}, this.card.name),
+            logItems
+          )
+        )
       );
     } else {
       logControl = "";
     }
 
     return (
-      <div className={"bg bg-" + this.card.color}>
-        {nameControl}
+      React.DOM.div( {className:"bg bg-" + this.card.color},
+        nameControl,
 
-        <div className="card-heading">total</div>
-        <div className="card-field">{formatTime(this.state.totalTime)}</div>
+        React.DOM.div( {className:"card-heading"}, "total"),
+        React.DOM.div( {className:"card-field"}, formatTime(this.state.totalTime)),
 
-        <div className="card-heading">
-          {this.card.running ? "current session" : "last session"}
-        </div>
-        <div className="card-field">{formatTime(this.state.sessionTime)}</div>
+        React.DOM.div( {className:"card-heading"},
+          this.card.running ? "current session" : "last session"
+        ),
+        React.DOM.div( {className:"card-field"}, formatTime(this.state.sessionTime)),
 
-        <div className="card-actions">
-          <a href="#" onClick={this.handleSwitch} className="button">
-            {this.card.running ? "Stop" : "Start"}
-          </a>
+        React.DOM.div( {className:"card-actions"},
+          React.DOM.a( {href:"#", onClick:this.handleSwitch, className:"button"},
+            this.card.running ? "Stop" : "Start"
+          ),
 
-          <a href="#" onClick={this.handleLogDisplay} className="button">
-            Log
-          </a>
+          React.DOM.a( {href:"#", onClick:this.handleLogDisplay, className:"button"},
+            " Log "
+          ),
 
-          <a href="#" onClick={this.handleDeleteClick} className="button button-delete">
-            Delete
-          </a>
-        </div>
+          React.DOM.a( {href:"#", onClick:this.handleDeleteClick, className:"button button-delete"},
+            " Delete "
+          )
+        ),
 
-        {logControl}
-      </div>
+        logControl
+      )
     );
   }
 });
