@@ -94,7 +94,9 @@ var CardView = React.createClass({
         <div className="card-heading">total</div>
         <div className="card-field">{formatTime(this.state.totalTime)}</div>
 
-        <div className="card-heading">session</div>
+        <div className="card-heading">
+          {this.card.running ? "current session" : "last session"}
+        </div>
         <div className="card-field">{formatTime(this.state.sessionTime)}</div>
 
         <div className="card-actions">

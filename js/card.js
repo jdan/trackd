@@ -63,7 +63,10 @@ Card.prototype.total = function () {
   }
 
   /* Also add the current session time */
-  total += this.session();
+  if (this.running) {
+    var now = Math.floor(new Date().getTime() / 1000);
+    total += now - this.startTime;
+  }
 
   return total;
 };
@@ -74,9 +77,12 @@ Card.prototype.total = function () {
  */
 Card.prototype.session = function () {
   if (!this.running) {
-    return 0;
+    /* Return the last session's time */
+    var lastPunch = this.log[this.log.length - 1];
+    return lastPunch[1] - lastPunch[0];
+  } else {
+    /* Return the current run time */
+    var now = Math.floor(new Date().getTime() / 1000);
+    return now - this.startTime;
   }
-
-  var now = Math.floor(new Date().getTime() / 1000);
-  return now - this.startTime;
 };
