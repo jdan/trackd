@@ -1,8 +1,5 @@
 /** @jsx React.DOM */
 
-/* Store an auto-incrementing cardId for all newly-created cards */
-var cardId = 1;
-
 /**
  * A CardView holds
  * - an instance of the Card class
@@ -15,8 +12,7 @@ var CardView = React.createClass({
    * The state of this view includes an id and a Card instance
    */
   getInitialState: function () {
-    this.id = cardId++;
-    this.card = new Card('Card ' + this.id);
+    this.card = this.props.card;
 
     /* Punch in right away - for now */
     this.card.punchIn();
@@ -58,11 +54,11 @@ var CardView = React.createClass({
   },
 
   componentDidMount: function () {
-    clock.addCallback(this.id, this.tick);
+    clock.addCallback(this.card.id, this.tick);
   },
 
   componentWillUnmount: function () {
-    clock.clearCallback(this.id);
+    clock.clearCallback(this.card.id);
   },
 
   render: function () {

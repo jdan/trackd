@@ -7,10 +7,11 @@ var COLOR_CLASSES = ['red', 'blue', 'green', 'yellow', 'purple', 'pink', 'orange
  */
 
 function Card(name, color) {
-  this.name = name;
+  this.id = Card.cardId++;    // I don't think we need this
+
+  this.name = name || 'Card ' + this.id;
   this.color = color || COLOR_CLASSES[Math.floor(Math.random() * COLOR_CLASSES.length)];
 
-  this.id = Card.cardId++;    // I don't think we need this
   this.running = false;
   this.startTime = null;
 
