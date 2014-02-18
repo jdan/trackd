@@ -1,8 +1,0 @@
-{
-  "name": "ss14-team-264",
-  "root": "./",
-  "clean_urls": true,
-  "error_page": "error.html",
-  "cache_control": {},
-  "routes": {}
-}
